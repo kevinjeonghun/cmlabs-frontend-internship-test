@@ -1,0 +1,19 @@
+{
+  "name": "cmlabs-frontend-internship-test",
+  "version": "1.0.0",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "build:css": "tailwindcss -i ./css/input.css -o ./css/style.css --watch"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "description": "",
+  "dependencies": {
+    "autoprefixer": "^10.4.20",
+    "axios": "^1.7.7",
+    "postcss": "^8.4.47",
+    "tailwindcss": "^3.4.14"
+  }
+}
