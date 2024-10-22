@@ -3,19 +3,57 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Category</title>
+    <title>Food App</title>
     <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
 </head>
+
 <body class="bg-gray-100">
-    <div class="container mx-auto mt-10">
-        <h1 class="text-4xl font-bold text-center mb-8">See All The Delicious Foods</h1>
-        <div id="category-list" class="grid grid-cols-2 md:grid-cols-4 gap-6">
-            
-        </div>
+  <nav class="p-5 bg-white shadow flex justify-between items-center">
+    <div class="flex items-center space-x-3">
+      <!-- Logo SVG -->
+      <svg viewBox="0 0 64 64" xmlns="http://www.w3.org/2000/svg" style="width:40px; height:40px">
+        <path style="fill:none" d="M0 0h64v64H0z"/>
+        <path d="M35.986 27H8.36l2.822 25.009A2.242 2.242 0 0 0 13.41 54h17.525a2.243 2.243 0 0 0 2.229-1.991L35.986 27z" style="fill:none;stroke:#444f58;stroke-width:2px"/>
+        <path d="M38.346 23.266a2.244 2.244 0 0 0-2.243-2.243H8.243A2.24 2.24 0 0 0 6 23.266v1.491A2.24 2.24 0 0 0 8.243 27h27.86a2.242 2.242 0 0 0 2.243-2.243v-1.491z" style="fill:none;stroke:#444f58;stroke-width:2px"/>
+        <path d="M33.276 21.023H11.07v-1.762a2.243 2.243 0 0 1 2.243-2.243h17.72a2.243 2.243 0 0 1 2.243 2.243v1.762z"/>
+      </svg>
+
+      <span class="text-3xl font-bold">Meal App</span>
     </div>
 
-    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
-    <script src="js/main.js"></script>
+    <!-- Hamburger Icon for Mobile -->
+    <div class="md:hidden">
+      <button id="menu-btn">
+        <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+          <path stroke-linecap="round" stroke-linejoin="round" d="M4 6h16M4 12h16M4 18h16" />
+        </svg>
+      </button>
+    </div>
+
+    <ul id="menu" class="hidden md:flex space-x-6">
+      <li><a href="#" class="text-xl">Home</a></li>
+      <li><a href="#" id="foods-link" class="text-xl cursor-pointer">Foods</a></li>
+      <li><a href="#" class="text-xl">Ingredients</a></li>
+      <li><a href="#" class="text-xl">Local Culinary</a></li>
+    </ul>
+  </nav>
+
+  <div class="w-screen h-screen bg-cover bg-center flex items-center justify-center" style="background-image: url('asset/homepage.jpg');">
+    <div class="text-center text-white">
+      <h1 class="text-6xl font-bold mb-6">See All The Delicious Foods</h1>
+      <p class="text-lg mb-8">Explore the world's most exquisite dishes and find your favorite recipes!</p>
+      <a href="#" id="explore-btn" class="px-6 py-3 bg-gray-500 text-white font-bold rounded-lg hover:bg-gray-600 transition duration-300">Let's Explore</a>
+    </div>
+  </div>
+
+  <div id="food-categories" class="container mx-auto mt-10">
+    <h2 class="text-4xl font-bold text-center mb-8">Food Categories</h2>
+    <div id="category-list" class="grid grid-cols-2 md:grid-cols-4 gap-6">
+        <!-- Category items -->
+    </div>
+  </div>
+
+  <!-- Import External JS File -->
+  <script src="js/main.js"></script>
 </body>
 </html>
