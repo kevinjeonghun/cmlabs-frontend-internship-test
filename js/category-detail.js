@@ -2,7 +2,7 @@ document.addEventListener('DOMContentLoaded', async () => {
     const mealList = document.getElementById('meal-list');
     const categoryTitle = document.getElementById('category-title');
 
-    // Ambil parameter `category-name` dari URL
+    // Get the `category-name` parameter from the URL
     const urlParams = new URLSearchParams(window.location.search);
     const categoryName = urlParams.get('category-name');
 
@@ -11,10 +11,10 @@ document.addEventListener('DOMContentLoaded', async () => {
         return;
     }
 
-    // Set judul kategori
+    // Set the category title
     categoryTitle.innerText = `${categoryName}`;
 
-    // API URL untuk mendapatkan daftar meal berdasarkan category-name
+    // API URL to get the list of meals based on the category name
     const API_URL = `https://www.themealdb.com/api/json/v1/1/filter.php?c=${categoryName}`;
 
     try {
@@ -25,12 +25,12 @@ document.addEventListener('DOMContentLoaded', async () => {
         const meals = response.data.meals;
 
         if (meals && meals.length > 0) {
-            // Loop untuk menampilkan setiap meal
+            // Loop to display each meal
             meals.forEach(meal => {
                 const mealItem = document.createElement('div');
                 mealItem.classList.add('relative', 'overflow-hidden', 'rounded-lg', 'transition', 'duration-300', 'transform', 'hover:scale-105', 'cursor-pointer');
 
-                // Tambahkan event listener untuk redirect ke halaman meal-detail.html
+                 // Add event listener to redirect to meal-detail.html page
                 mealItem.addEventListener('click', () => {
                     window.location.href = `meal-detail.html?meal-id=${meal.idMeal}`;
                 });

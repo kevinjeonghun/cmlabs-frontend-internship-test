@@ -2,7 +2,7 @@ document.addEventListener('DOMContentLoaded', async () => {
     const mealDetail = document.getElementById('meal-detail');
     const mealTitle = document.getElementById('meal-title');
 
-    // Ambil parameter `meal-id` dari URL
+    // Get the `meal-id` parameter from the URL
     const urlParams = new URLSearchParams(window.location.search);
     const mealId = urlParams.get('meal-id');
 
@@ -11,25 +11,32 @@ document.addEventListener('DOMContentLoaded', async () => {
         return;
     }
 
-    // API URL untuk mengambil detail meal
+     // API URL to fetch meal details
     const API_URL = `https://www.themealdb.com/api/json/v1/1/lookup.php?i=${mealId}`;
 
     try {
         const response = await axios.get(API_URL);
         const meal = response.data.meals[0];
 
-        // Tampilkan detail meal
+        // Split instructions into individual steps by line breaks (if applicable)
+        const instructionsArray = meal.strInstructions.split(/(?:\r\n|\r|\n)+/);
+
+        // Generate HTML for instructions list dynamically
+        const instructionsHTML = instructionsArray.map(instruction => `<li>${instruction}</li>`).join('');
+
+        // Display the meal details
         mealTitle.innerText = meal.strMeal;
         mealDetail.innerHTML = `
             <img src="${meal.strMealThumb}" alt="${meal.strMeal}" class="w-full h-auto rounded-lg mb-4">
-            <p class="text-lg mb-4"><strong>Category:</strong> ${meal.strCategory}</p>
-            <p class="text-lg mb-4"><strong>Area:</strong> ${meal.strArea}</p>
-            <p class="text-lg mb-4"><strong>Instructions:</strong> ${meal.strInstructions}</p>
-            <h3 class="text-2xl font-bold mt-6 mb-4">Ingredients</h3>
+            <h2 class="text-2xl font-bold mb-4">Instructions</h2>
+            <ol class="list-decimal space-y-4 pl-5 text-justify">
+                ${instructionsHTML}
+            </ol>
+            <h3 class="text-2xl font-bold mt-6 mb-4">Recipes</h3>
             <ul class="list-disc pl-5">
                 ${getIngredientsList(meal).join('')}
             </ul>
-            ${meal.strYoutube ? `<h3 class="text-2xl font-bold mt-6 mb-4">Recipe Video</h3><iframe width="100%" height="400" src="https://www.youtube.com/embed/${meal.strYoutube.split('=')[1]}" frameborder="0" allowfullscreen></iframe>` : ''}
+            ${meal.strYoutube ? `<h3 class="text-2xl font-bold mt-6 mb-4">Tutorials</h3><iframe width="100%" height="400" src="https://www.youtube.com/embed/${meal.strYoutube.split('=')[1]}" frameborder="0" allowfullscreen></iframe>` : ''}
         `;
 
     } catch (error) {
@@ -38,7 +45,7 @@ document.addEventListener('DOMContentLoaded', async () => {
     }
 });
 
-// Fungsi untuk mendapatkan daftar ingredients
+// Function to get the list of ingredients
 function getIngredientsList(meal) {
     const ingredients = [];
     for (let i = 1; i <= 20; i++) {
