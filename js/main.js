@@ -1,12 +1,11 @@
 // Toggle menu visibility on mobile view
-function Menu() {
+function toggleMenu() {
     const menu = document.getElementById('menu');
-    menu.classList.toggle('top-[80px]'); // Positioning when visible
-    menu.classList.toggle('opacity-100'); // Opacity change when visible
+    menu.classList.toggle('hidden'); // Add or remove the "hidden" class
 }
 
 // Add event listener to the hamburger icon
-document.getElementById('menu-btn').addEventListener('click', Menu);
+document.getElementById('menu-btn').addEventListener('click', toggleMenu);
 
 // Fetch Food Categories API
 document.addEventListener('DOMContentLoaded', async () => {
@@ -21,13 +20,6 @@ document.addEventListener('DOMContentLoaded', async () => {
         foodCategoriesSection.scrollIntoView({ behavior: 'smooth' });
     });
 
-    // Scroll to Food Categories when "Foods" link in navbar is clicked
-    const foodsLink = document.getElementById('foods-link');
-    foodsLink.addEventListener('click', (e) => {
-        e.preventDefault();
-        foodCategoriesSection.scrollIntoView({ behavior: 'smooth' });
-    });
-
     // Fetch categories from API and display them
     try {
         const response = await fetch(API_URL);
@@ -37,13 +29,18 @@ document.addEventListener('DOMContentLoaded', async () => {
         // Loop through categories and dynamically create HTML for each category
         categories.forEach(category => {
             const categoryItem = document.createElement('div');
-            categoryItem.classList.add('relative', 'overflow-hidden', 'rounded-lg', 'transition', 'duration-300', 'transform', 'hover:scale-105');
+            categoryItem.classList.add('relative', 'overflow-hidden', 'rounded-lg', 'transition', 'duration-300', 'transform', 'hover:scale-105', 'cursor-pointer');
+
+            // Tambahkan event listener untuk redirect ke halaman category-detail.html
+            categoryItem.addEventListener('click', () => {
+                window.location.href = `category-detail.html?category-name=${category.strCategory}`;
+            });
 
             // HTML content of each category
             categoryItem.innerHTML = `
                 <img src="${category.strCategoryThumb}" alt="${category.strCategory}" class="w-full h-32 md:h-40 object-cover rounded-md">
                 <div class="absolute inset-0 flex items-center justify-center bg-black bg-opacity-50">
-                    <span class="text-white text-xl font-bold">${category.strCategory}</span>
+                    <span class="text-white text-xl font-bold text-center">${category.strCategory}</span>
                 </div>
             `;
 

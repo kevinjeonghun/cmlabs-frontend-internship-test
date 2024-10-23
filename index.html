@@ -10,7 +10,6 @@
 <body class="bg-gray-100">
   <nav class="p-5 bg-white shadow flex justify-between items-center">
     <div class="flex items-center space-x-3">
-      <!-- Logo SVG -->
       <svg viewBox="0 0 64 64" xmlns="http://www.w3.org/2000/svg" style="width:40px; height:40px">
         <path style="fill:none" d="M0 0h64v64H0z"/>
         <path d="M35.986 27H8.36l2.822 25.009A2.242 2.242 0 0 0 13.41 54h17.525a2.243 2.243 0 0 0 2.229-1.991L35.986 27z" style="fill:none;stroke:#444f58;stroke-width:2px"/>
@@ -21,7 +20,7 @@
       <span class="text-3xl font-bold">Meal App</span>
     </div>
 
-    <!-- Hamburger Icon for Mobile -->
+    <!-- Hamburger icon for mobile -->
     <div class="md:hidden">
       <button id="menu-btn">
         <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
@@ -30,11 +29,12 @@
       </button>
     </div>
 
-    <ul id="menu" class="hidden md:flex space-x-6">
-      <li><a href="#" class="text-xl">Home</a></li>
-      <li><a href="#" id="foods-link" class="text-xl cursor-pointer">Foods</a></li>
-      <li><a href="#" class="text-xl">Ingredients</a></li>
-      <li><a href="#" class="text-xl">Local Culinary</a></li>
+    <!-- Menu (Hidden by default on mobile) -->
+    <ul id="menu" class="hidden absolute top-16 right-0 w-full bg-white shadow-lg md:flex md:relative md:top-auto md:right-auto md:w-auto md:bg-transparent md:shadow-none md:space-x-6 transition-all duration-300">
+      <li><a href="#" class="block px-4 py-2 text-xl md:inline-block">Home</a></li>
+      <li><a href="#" id="foods-link" class="block px-4 py-2 text-xl md:inline-block cursor-pointer">Foods</a></li>
+      <li><a href="#" class="block px-4 py-2 text-xl md:inline-block">Ingredients</a></li>
+      <li><a href="#" class="block px-4 py-2 text-xl md:inline-block">Local Culinary</a></li>
     </ul>
   </nav>
 
@@ -49,11 +49,12 @@
   <div id="food-categories" class="container mx-auto mt-10">
     <h2 class="text-4xl font-bold text-center mb-8">Food Categories</h2>
     <div id="category-list" class="grid grid-cols-2 md:grid-cols-4 gap-6">
-        <!-- Category items -->
+        <!-- Category food items in main.js -->
     </div>
   </div>
 
-  <!-- Import External JS File -->
+  <!-- Import JS file -->
+  <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
   <script src="js/main.js"></script>
 </body>
 </html>
